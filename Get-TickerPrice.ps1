@@ -1,6 +1,25 @@
+<#
+    .DESCRIPTION
+    Gives stock information to your terminal.
+
+    .EXAMPLE
+    .\Get-TickerPrice.ps1 -ApiKey IRyLDDBZhKaYc9txBTTQvabwAtxKWutk8pgHOoba -Endpoint quote -Symbols "AMZN,SNAP,PINS,REGN,APD"
+
+    .LINK
+    https://www.yahoofinanceapi.com/tutorial
+
+    .PARAMETER Symbols
+    symbols are stock tickers that are separated by commas. eg. BTC-USD,AAPL,AMZN
+
+
+
+#>
+
+
 [CmdletBinding()]
     param (
         [string]$Symbols = "X.TO",
+
         [ValidateSet("quote", "trending")]
         [string]$Endpoint= "quote",
         [string]$Region = "US",
