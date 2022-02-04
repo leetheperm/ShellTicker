@@ -3,7 +3,7 @@
     Gives stock information to your terminal.
 
     .EXAMPLE
-    .\Get-TickerPrice.ps1 -ApiKey IRyLDDBZhKaYc9txBTTQvabwAtxKWutk8pgHOoba -Endpoint quote -Symbols "AMZN,SNAP,PINS,REGN,APD"
+    .\Get-TickerPrice.ps1 -ApiKey KEY -Endpoint quote -Symbols "AMZN,SNAP,PINS,REGN,APD"
 
     .LINK
     https://www.yahoofinanceapi.com/tutorial
