@@ -11,21 +11,20 @@
     .PARAMETER Symbols
     symbols are stock tickers that are separated by commas. eg. BTC-USD,AAPL,AMZN
 
-
-
 #>
 
 
 [CmdletBinding()]
     param (
         [string]$Symbols = "X.TO",
-
         [ValidateSet("quote", "trending")]
         [string]$Endpoint= "quote",
         [string]$Region = "US",
         [string]$ApiKey = ""
     )
     
+Remove-Module -Name MyModule -ErrorAction SilentlyContinue -Force
+Import-Module .\MyModule.psm1
 
 # $ResponseData = $JsonPath | Select-Object $Tickerfields | Format-Table
 
@@ -46,17 +45,7 @@ switch($Endpoint){
 
 Write-Host $Query
 
-try
-{
-    $ApiResponse = ConvertFrom-Json (Invoke-WebRequest -Uri $Query -Headers @{"X-API-Key"="$($ApiKey)"})
-    # This will only execute if the Invoke-WebRequest is successful.
-}
-catch
-{
-    $StatusCode = $_.Exception.Response.StatusCode.value__
-    Write-Host "Failed request. Response code: $($StatusCode)"
-}
-
+$ApiResponse = Get-ApiResponse -Query $Query -ApiKey $ApiKey
 
 $QuoteResponseData = $ApiResponse.quoteResponse.result 
 $TrendingResponseData = $ApiResponse.finance.result.quotes
