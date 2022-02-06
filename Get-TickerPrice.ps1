@@ -23,8 +23,8 @@
         [string]$ApiKey = ""
     )
     
-Remove-Module -Name MyModule -ErrorAction SilentlyContinue -Force
-Import-Module .\MyModule.psm1
+Remove-Module -Name Get-YahooFinanceResponse -ErrorAction SilentlyContinue -Force
+Import-Module .\Get-YahooFinanceResponse.psm1
 
 # $ResponseData = $JsonPath | Select-Object $Tickerfields | Format-Table
 
@@ -45,7 +45,7 @@ switch($Endpoint){
 
 Write-Host $Query
 
-$ApiResponse = Get-ApiResponse -Query $Query -ApiKey $ApiKey
+$ApiResponse = Get-YahooFinanceResponse -Query $Query -ApiKey $ApiKey
 
 $QuoteResponseData = $ApiResponse.quoteResponse.result 
 $TrendingResponseData = $ApiResponse.finance.result.quotes

@@ -1,4 +1,4 @@
-function Get-ApiResponse{
+function Get-YahooFinanceResponse{
     param(
         [Parameter(Mandatory)]
         [string]$Query,
